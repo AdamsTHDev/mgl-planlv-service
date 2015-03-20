@@ -31,4 +31,12 @@ public class CampaignServiceImpl implements CampaignService {
 		return campaignDao.findByHQL(hql, objects);
 	}
 
+	@Override
+	public List<Campaign> findCampaignByLikeListLot(String listLot) throws Exception {
+		String hql = "select distinct c "
+				+ " from ListLot t "
+				+ "	inner join t.campaign as c "
+				+ " where t.listLotCode like ? ";
+		return campaignDao.findByHQL(hql, listLot);
+	}
 }
